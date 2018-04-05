@@ -31,13 +31,14 @@ module CodeChallenge
           end
           
           return sum # could have used the 1-base index!
-                     # string manipulation is easy in Ruby & Python
+                     # string manipulation is simple in Ruby & Python
         rescue StandardError => msg
           puts msg
-          return -1
+        rescue Exception => msg
+          puts msg
         end
         
-        return -1 # should never reach here
+        return -1 
       end
      
       def check_bounds(rawinput)        
@@ -52,11 +53,13 @@ module CodeChallenge
         i=0
         begin
           File.open(filename).each do |line|
-            found = line.match(regex_pattern)
-            matches << {filename.split('/')[-1] => {"line #{i}" => found}} if found
+            found = line.scan(regex_pattern)
+            found.each do |f|
+              matches << {filename.split('/')[-1] => {"line #{i}" => f}} if found
+            end
             i=i+1
           end
-        rescue StandardError => msg
+        rescue Exception => msg
           puts msg
         end
         return matches
