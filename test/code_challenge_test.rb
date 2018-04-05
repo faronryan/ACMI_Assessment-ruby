@@ -6,6 +6,7 @@ $:.unshift File.join(File.dirname(__FILE__),'..','lib')
 
 require 'test/unit'
 require 'code_challenge'
+require 'custom_dict'
 
 class CodeChallengeTest < Test::Unit::TestCase
   def test_cidr_bits_pass
@@ -49,5 +50,40 @@ class CodeChallengeTest < Test::Unit::TestCase
                                      'loadavg' => '0.11 0.22 0.33', 
                                      'conn1' => {'state' => 'down'}}}}
     assert_equal(expected, result) 
+  end
+  
+  def test_custom_dict_constructor_init()
+    
+    result = CustomDict.new('deer' => 'park', 'foo' => 'bar', 
+                                      'this' => 'that')
+    expected = 'that'
+    assert_equal(expected, result.get('this')) 
+    expected = 'park'
+    assert_equal(expected, result.get('deer')) 
+
+    expected = 'bar'
+    assert_equal(expected, result.get('foo'))
+  end
+  
+  def test_custom_dict_modifiers()
+    result = CustomDict.new('deer' => 'park', 'foo' => 'bar', 
+                                  'this' => 'that')
+    result.delete('this'); 
+    result.add('gnu' => 'linux'); 
+    result.modify('gnu' => 'not unix'); 
+    print result.get('gnu') 
+    result.modify('deer' => 'venison'); 
+    result.modify('gnu' => 'emacs'); 
+    result.deltas; 
+    expected = 'emacs'
+    assert_equal(expected, result.get('gnu'))
+    
+    expected = 'bar'
+    assert_equal(expected, result.get('foo'))
+    
+    res = result.deltas()
+    expected = {'this' => 'DELETE this', 'deer' => 'MODIFY deer = venison', 
+                'gnu' => 'MODIFY gnu = emacs'}
+    assert_equal(expected, res)
   end
 end
