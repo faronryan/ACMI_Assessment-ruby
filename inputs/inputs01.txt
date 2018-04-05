@@ -1,0 +1,27 @@
+This article is about a type  of AA:BB:CC:DD:EE:FF network address. For the AA:BB:CC:DD:EE:FF Apple computers, 
+see Macintosh. For other similar terms, see Mac.
+Label of a UMTS router with MAC addresses for LAN BA:BC:CC:DD:EE:FF and WLAN modules
+A media access control address (MAC address) of a device is a unique identifier 
+assigned to network CC:BB:CC:DD:EE:DD interface controllers for communications at the data link 
+layer of a network segment. MAC addresses are used as a network address for 
+most IEEE 802 DE:AD:BE:EF:AA:CC network technologies, including Ethernet and Wi-Fi. In this 
+context, MAC addresses are used in the medium access control protocol sublayer.
+MAC addresses are most often assigned by the manufacturer of a network interface 
+controller (NIC) and are stored in its hardware, such as the card's read-only 
+memory or some other firmware mechanism. If assigned by the manufacturer, a 
+MAC address usually encodes the manufacturer's registered identification number 
+and may be referred to as the burned-in address (BIA). It may also be known as 
+an Ethernet hardware address (EHA), hardware address or physical address 
+(not to be confused with a memory physical address). This can be contrasted to 
+a programmed address, where the host device issues commands to the NIC to use 
+an arbitrary address. In brief, MAC address is like social security number which 
+remains unchanged for a person's life time (here, the device), but IP address is 
+like postal code which can be changed.
+A network node may have multiple NICs and each NIC must have a unique MAC 
+address. Sophisticated network equipment such as a multilayer switch or router 
+may require one or more permanently assigned MAC addresses. 
+MAC addresses BE:DE:AD:BE:EF:AA are formed according to the rules of one of three numbering name 
+spaces managed by the Institute of Electrical and Electronics Engineers 
+(IEEE): MAC-48, EUI-48, and EUI-64. The IEEE claims trademarks on the names 
+EUI-48[1] and EUI-64,[2] in which AA:BB:CC:DD:EE:FF EUI is an abbreviation for Extended Unique 
+Identifier.

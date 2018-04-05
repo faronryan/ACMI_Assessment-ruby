@@ -45,7 +45,24 @@ module CodeChallenge
             raise OutofBoundsError 
         end
       end     
+    
+      def find_mac_address(filename)
+        matches = []
+        regex_pattern = /[\s]+[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}[\s]+/
+        i=0
+        begin
+          File.open(filename).each do |line|
+            found = line.match(regex_pattern)
+            matches << {filename.split('/')[-1] => {"line #{i}" => found}} if found
+            i=i+1
+          end
+        rescue StandardError => msg
+          puts msg
+        end
+        return matches
+      end
       
+    # end of class
     end
     
     class OutofBoundsError < StandardError # custom error
@@ -53,4 +70,6 @@ module CodeChallenge
         super(msg)
       end
     end
+    
+    
 end
