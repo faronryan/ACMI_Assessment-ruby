@@ -2,6 +2,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require 'pp'
+
 # RFC 1878 - https://tools.ietf.org/html/rfc1878
 NETMASK_LOOKUP_TABLE = ["128.0.0.0","192.0.0.0","224.0.0.0","240.0.0.0",
                         "248.0.0.0","252.0.0.0","254.0.0.0","255.0.0.0",
@@ -65,6 +67,33 @@ module CodeChallenge
         return matches
       end
       
+      def explodereport(rawinput)
+        dumper = {}
+        rawinput.each do |line|
+            exploder_helper(line.split('|'), 0, dumper) 
+        end
+        # use Ruby pretty print, for desired print
+        pp(dumper.sort) 
+
+        return dumper  
+      end
+
+      def exploder_helper(lst, index, hsh)
+        
+        if index < (lst.length() -1) then 
+          if hsh.has_key?(lst[index]) then
+              hsh[lst[index]] = exploder_helper(lst, index+1, 
+                                                     hsh[lst[index]])
+              return hsh
+          else
+              hsh[lst[index]] = exploder_helper(lst, index+1, {})
+              return hsh 
+          end
+        else
+            return lst[index] 
+        end
+       end
+
     # end of class
     end
     
